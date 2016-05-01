@@ -20,48 +20,32 @@ public class DbConnection {
     
     // Se define el usuario de la base de datos
     // Debe ser cambiado en cada ambiente de desarrollo
-    private String username = "root";
-    private String database = "inscripciones";
-    private String password = "";
+    private static final String USERNAME = "root";
+    private static final String DATABASE = "inscripciones";
+    private static final String PASSWORD = "";
     
     public DbConnection() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/" + database,
-                    username, password);
-        }
-        catch(ClassNotFoundException cnfex) {
-            System.err.println("Failed to load JDBC/ODBC driver.");
-            cnfex.printStackTrace();
-            System.exit(1);
-        }
-        catch(SQLException sqlex) {
-            System.err.println("Unable to connect to database " + database);
-            sqlex.printStackTrace();
-        }
     }
-    
-//    public static void main(String[] args) {
-//        String query;
-//        
-//        Scanner in = new Scanner(System.in);
-//        query = in.nextLine();
-//        
-//        DbConnection db = new DbConnection();
-//        
-//        ArrayList<HashMap> results = db.executeQuery(query);
-//        for(HashMap r : results) {
-//            
-//            System.out.println("Usuario: " + r.get("username") + " password: " + r.get("password"));
-//        }
-//    }
     
     public static ArrayList<HashMap> executeQuery(String query) {
         Statement statement;
         ResultSet resultSet = null;
         ResultSetMetaData rsmd;
         ArrayList<HashMap> data = new ArrayList<>();
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/" + DATABASE,
+                    USERNAME, PASSWORD);
+        } catch (ClassNotFoundException cnfex) {
+            System.err.println("Failed to load JDBC/ODBC driver.");
+            cnfex.printStackTrace();
+            System.exit(1);
+        } catch (SQLException sqlex) {
+            System.err.println("Unable to connect to database " + DATABASE);
+            sqlex.printStackTrace();
+        }
         
         try {
             statement = conn.createStatement();

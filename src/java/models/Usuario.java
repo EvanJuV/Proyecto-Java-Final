@@ -28,11 +28,11 @@ public class Usuario {
     public Usuario() {    
     }
     
-    public static boolean validate(String username, String password) {
-        DbConnection db = new DbConnection();
+    public static boolean validate(String username, String password) {        
+        ArrayList<HashMap> result = DbConnection.executeQuery(
+                String.format("SELECT * FROM usuarios WHERE username='%s' "
+                        + "AND password='%s';", username, password));
         
-        ArrayList<HashMap> result = db.executeQuery(String.format("SELECT * FROM usuarios WHERE username='%s' AND password='%s';", username, password));
-        
-        return !result.isEmpty();
+        return !(result.isEmpty());
     }
 }
