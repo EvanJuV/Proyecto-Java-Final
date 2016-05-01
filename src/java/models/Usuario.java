@@ -5,6 +5,10 @@
  */
 package models;
 
+import database.DbConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
  * @author Evan
@@ -24,5 +28,11 @@ public class Usuario {
     public Usuario() {    
     }
     
-    
+    public static boolean validate(String username, String password) {
+        DbConnection db = new DbConnection();
+        
+        ArrayList<HashMap> result = db.executeQuery(String.format("SELECT * FROM usuarios WHERE username='%s' AND password='%s';", username, password));
+        
+        return !result.isEmpty();
+    }
 }
