@@ -53,7 +53,7 @@ public class Salon {
     }
     
     public static ArrayList<Salon> transformResults(ArrayList<HashMap> result) {
-        ArrayList<Salon> newResult = null;
+        ArrayList<Salon> newResult = new ArrayList<Salon>();
         
         for (HashMap hm : result) {
             newResult.add(hashToObject(hm));
