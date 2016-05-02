@@ -21,7 +21,6 @@ import models.Usuario;
 public class ManageUsuariosServlet extends HttpServlet {
      
     // Función que maneja la entrada de requests al servlet
-    @Override
     public void service(HttpServletRequest request, 
                           HttpServletResponse response) 
                           throws ServletException, IOException {
@@ -30,17 +29,15 @@ public class ManageUsuariosServlet extends HttpServlet {
         String url = "";
         
         if(Usuario.validate(username, password)) {
-            HttpSession newSession = request.getSession();
+            //HttpSession newSession = request.getSession();
             url = "menu.jsp";
             response.sendRedirect(url);
         }
         else {
             request.setAttribute("error_msg", "Error, la combinación de contraseña y usuario no es válida");
-
             url = "/login.jsp";
             
-            RequestDispatcher dispatcher
-                    = getServletContext().getRequestDispatcher(url);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
             dispatcher.forward(request, response);
         }
     }
