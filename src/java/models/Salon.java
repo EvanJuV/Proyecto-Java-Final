@@ -28,22 +28,28 @@ public class Salon {
     }
     
     public static ArrayList<Salon> getAll() {
-        ArrayList<HashMap> result = DbConnection.executeQuery("SELECT * FROM salones;");
+        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM salones;");
         ArrayList<Salon> salones = transformResults(result);
         
         return salones;
     }
     
+    public static void main(String args[]){
+        Salon rish = new Salon(1, 1, "Rishurd");
+        //rish.save();
+        System.out.print(Salon.getAll());
+    }
+    
     public void update() {
-        DbConnection.executeQuery(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento=%s WHERE numeroSalon=%d, departamento=%s;", this.numeroSalon, this.capacidad, this.departamento, this.numeroSalon, this.departamento));
+        DbConnection.query(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento='%s' WHERE numeroSalon=%d, departamento='%s';", this.numeroSalon, this.capacidad, this.departamento, this.numeroSalon, this.departamento));
     }
     
     public void remove() {
-        DbConnection.executeQuery(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento=%s;", this.numeroSalon, this.capacidad, this.departamento));
+        DbConnection.query(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento='%s';", this.numeroSalon, this.capacidad, this.departamento));
     }
     
     public void save() {
-        DbConnection.executeQuery(String.format("INSERT INTO salones (numeroSalon, capacidad, departamento) VALUES(%d, %d, %s);", this.numeroSalon, this.capacidad, this.departamento));
+        DbConnection.query(String.format("INSERT INTO salones (numeroSalon, capacidad, departamento) VALUES (%d, %d, '%s');", this.numeroSalon, this.capacidad, this.departamento));
     }
     
     public static ArrayList<Salon> transformResults(ArrayList<HashMap> result) {

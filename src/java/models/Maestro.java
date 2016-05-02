@@ -31,7 +31,7 @@ public class Maestro {
     }
     
     public ArrayList<Maestro> getAll() {
-        ArrayList<HashMap> result = DbConnection.executeQuery("SELECT * FROM maestros;");
+        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM maestros;");
         ArrayList<Maestro> maestros = transformResults(result);
         
         return maestros;
@@ -50,7 +50,7 @@ public class Maestro {
     }
     
     public void save() {
-        DbConnection.executeQuery(String.format("INSERT INTO maestros VALUES(%d, %s, %s, %s);", this.nomina, this.nombre, this.telefono, this.email));
+        DbConnection.query(String.format("INSERT INTO maestros VALUES(%d, %s, %s, %s);", this.nomina, this.nombre, this.telefono, this.email));
     }
         
     public ArrayList<Maestro> transformResults(ArrayList<HashMap> result) {

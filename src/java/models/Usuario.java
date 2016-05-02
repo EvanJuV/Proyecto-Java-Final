@@ -29,7 +29,7 @@ public class Usuario {
     }
     
     public static boolean validate(String username, String password) {        
-        ArrayList<HashMap> result = DbConnection.executeQuery(
+        ArrayList<HashMap> result = DbConnection.select(
                 String.format("SELECT * FROM usuarios WHERE username='%s' "
                         + "AND password='%s';", username, password));
         

@@ -27,7 +27,7 @@ public class DbConnection {
     public DbConnection() {
     }
     
-    public static ArrayList<HashMap> executeQuery(String query) {
+    public static ArrayList<HashMap> select(String query) {
         Statement statement;
         ResultSet resultSet = null;
         ResultSetMetaData rsmd;
@@ -52,6 +52,37 @@ public class DbConnection {
             resultSet = statement.executeQuery(query);
             rsmd = resultSet.getMetaData();
             data = getResults(resultSet, rsmd);
+            statement.close();
+        }
+        catch(SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        
+        return data;
+    }
+    
+    public static ArrayList<HashMap> query(String query) {
+        Statement statement;
+        ResultSetMetaData rsmd;
+        ArrayList<HashMap> data = new ArrayList<>();
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/" + DATABASE,
+                    USERNAME, PASSWORD);
+        } catch (ClassNotFoundException cnfex) {
+            System.err.println("Failed to load JDBC/ODBC driver.");
+            cnfex.printStackTrace();
+            System.exit(1);
+        } catch (SQLException sqlex) {
+            System.err.println("Unable to connect to database " + DATABASE);
+            sqlex.printStackTrace();
+        }
+        
+        try {
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
             statement.close();
         }
         catch(SQLException sqlex) {
