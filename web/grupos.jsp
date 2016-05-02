@@ -33,6 +33,7 @@
     </tr>
   </thead>
   <tbody>
+      <jsp:include page="navbar.jsp"/>
       <% ArrayList<Grupo> A;
            A = Grupo.getAll();
            
