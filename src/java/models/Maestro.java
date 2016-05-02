@@ -29,6 +29,13 @@ public class Maestro {
         this.telefono = telefono;
         this.email = email;
     }
+    
+    private Maestro(Maestro maestro) {
+        this.nomina = maestro.getNomina();
+        this.nombre = maestro.getNombre();
+        this.telefono = maestro.getTelefono();
+        this.email = maestro.getEmail();
+    }
 
     private Maestro() {
     }
@@ -52,7 +59,11 @@ public class Maestro {
     }
     
     public static ArrayList<Materia> getMaterias(int nomina) {
+        ArrayList<Materia> materias = new ArrayList<Materia>();
         DbConnection.select("SELECT ");
+        
+        
+        return materias;
     }
     
     public void update() {
@@ -71,7 +82,7 @@ public class Maestro {
     }
         
     public static ArrayList<Maestro> transformResults(ArrayList<HashMap> result) {
-        ArrayList<Maestro> newResult = new ArrayList<>();
+        ArrayList<Maestro> newResult = new ArrayList<Maestro>();
         
         for (HashMap hm : result) {
             
