@@ -34,7 +34,7 @@ public class Materia {
         this.horasLaboratorio = materia.getHorasLaboratorio();
     }
 
-    private Materia() {
+    public Materia() {
     }
 
     public static void main(String[] args) {
@@ -48,16 +48,18 @@ public class Materia {
         return maestros;
     }
 
-    public static ArrayList<Materia> get(HashMap hm) {
-        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM materias WHERE nomina='%d';");
+    public static Materia get(String clave) {
+        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM materias WHERE clave='%d';");
         ArrayList<Materia> materias = transformResults(result);
+        
+        Materia materia = !materias.isEmpty() ? materias.get(0) : new Materia();
 
-        return materias;
+        return materia;
     }
 
     public void update() {
         DbConnection.query(String.format("UPDATE materias SET clave='%s', "
-                + "nombre='%s', horasLaboratorio=%d WHERE nomina=%d",
+                + "nombre='%s', horasLaboratorio=%d WHERE clave='%s'",
                 this.clave, this.nombre, this.horasLaboratorio));
     }
 
@@ -67,7 +69,7 @@ public class Materia {
     }
 
     public void save() {
-        DbConnection.query(String.format("INSERT INTO materias VALUES(%s, %s, %d);", this.clave, this.nombre, this.horasLaboratorio));
+        DbConnection.query(String.format("INSERT INTO materias VALUES('%s', '%s', %d);", this.clave, this.nombre, this.horasLaboratorio));
     }
 
     public static ArrayList<Materia> transformResults(ArrayList<HashMap> result) {

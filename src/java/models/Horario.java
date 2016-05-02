@@ -31,6 +31,13 @@ public class Horario {
         
     }
     
+    public static ArrayList<Horario> getAll() {
+        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM horarios;");
+        ArrayList<Horario> horarios = transformResults(result);
+        
+        return horarios;
+    }
+    
     public static Horario get(int id) {
         ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM horarios WHERE id=%d;", id));
         ArrayList<Horario> horarios = transformResults(result);
@@ -38,13 +45,6 @@ public class Horario {
 
         return horario;
     }
-
-//    public static ArrayList<Materia> getMaterias(int id) {
-//        ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM materias m JOIN grupos g ON m.clave=g.materia_id JOIN horarios_grupos mtg ON g.id=mtg.grupo_id WHERE mtg.maestro_id=%d", id));
-//        ArrayList<Materia> materias = Materia.transformResults(result);
-//
-//        return materias;
-//    }
 
     public void update() {
         DbConnection.query(String.format("UPDATE horarios SET "
@@ -81,5 +81,37 @@ public class Horario {
         newHorario.duracion = (int) hm.get("duracion");
 
         return newHorario;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDias() {
+        return dias;
+    }
+
+    public void setDias(String dias) {
+        this.dias = dias;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 }

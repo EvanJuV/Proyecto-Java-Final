@@ -1,6 +1,6 @@
 <%-- 
-    Document   : nuevo_maestro
-    Created on : May 2, 2016, 3:16:42 AM
+    Document   : nueva_materia
+    Created on : May 2, 2016, 6:10:49 AM
     Author     : Evan
 --%>
 
@@ -13,31 +13,27 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/skeleton.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-        <title>Nuevo maestro</title>
+        <title>Nuevo materia</title>
     </head>
     <body>
         <jsp:include page="navbar.jsp"/>
         <div class="container push-top">
-            <h2>Nuevo maestro</h2>
-            <form method="POST" action="${pageContext.request.contextPath}/maestros/crear">
+            <h2>Nueva materia</h2>
+            <form method="POST" action="${pageContext.request.contextPath}/materias/crear">
                 <div class="row">
                     <div class="six columns">
-                        <label for="nomina">Nómina</label>
-                        <input type="text" name="nomina" class="u-full-width">
+                        <label for="clave">Clave</label>
+                        <input type="text" name="clave" class="u-full-width">
                     </div>
                     <div class="six columns">
-                        <label for="nombre">Nombre completo</label>
-                        <input type="text" name="nombre" class="u-full-width">
+                        <label for="horas_laboratorio">Horas Laboratorio</label>
+                        <input type="text" name="horas_laboratorio" class="u-full-width">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="six columns">
-                        <label for="telefono">Teléfono</label>
-                        <input type="text" name="telefono" class="u-full-width">
-                    </div>
-                    <div class="six columns">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" class="u-full-width">
+                    <div class="twelve columns">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" class="u-full-width">
                     </div>
                 </div>
                 <div class="row">
@@ -47,3 +43,4 @@
         </div>
     </body>
 </html>
+

@@ -51,8 +51,18 @@
                                 <input type="submit" class="button" value="Materias asignadas">
                             </form>
                         </td>
-                        <td><a class="button" href="Eliminar">Editar</a></td>
-                        <td><a class="button" href="Eliminar">X</a></td>
+                        <td>
+                            <form method="GET" action="${pageContext.request.contextPath}/maestros/edit">
+                                <input name="nomina" value="<%=m.getNomina()%>" hidden/>
+                                <input type="submit" class="button" value="Edit"/> 
+                            </form>
+                        </td>
+                        <td>
+                            <form method="DELETE" action="${pageContext.request.contextPath}/maestros/delete">
+                                <input name="nomina" value="<%=m.getNomina()%>" hidden/>
+                                <input type="submit" class="button" value="X"/>
+                            </form>  
+                        </td>
                     </tr>
                 </tbody>
                 <% } %>

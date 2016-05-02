@@ -42,6 +42,14 @@ public class Salon {
         return salones;
     }
     
+    public static Salon get(int id) {
+        ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM salones WHERE id=%d;", id));
+        ArrayList<Salon> salones = transformResults(result);
+        Salon salon = !salones.isEmpty() ? salones.get(0) : new Salon();
+
+        return salon;
+    }
+    
     public static void main(String args[]){
         Salon rish = new Salon(1, 1, "Rishurd");
         //rish.save();
@@ -106,8 +114,11 @@ public class Salon {
         return departamento;
     }
 
-    // Atributos de clase
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
 }

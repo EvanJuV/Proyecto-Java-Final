@@ -36,19 +36,14 @@ public class ManageMaestrosServlet  extends HttpServlet {
             case "materias":
                 materiasMaestro(request, response);
                 break;
+            case "update":
+                updateMaestro(request, response);
+                break;
+            case "delete":
+                deleteMaestro(request, response);
+                break;
         }
     }
-    
-//    public void maestros(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
-//        String url = "/maestros.jsp";
-//        ArrayList<Maestro> maestros;
-//        maestros = Maestro.getAll();
-//        
-//        request.setAttribute("maestros", maestros);
-//        
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-//        dispatcher.forward(request, response);
-//    }
     
     public void crearMaestro(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
         String url = request.getContextPath() + "/maestros.jsp";
@@ -81,8 +76,38 @@ public class ManageMaestrosServlet  extends HttpServlet {
     }
     
     public void editMaestro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String url = "/edit_maestro.jsp";
 
+        Maestro maestro = Maestro.get(parseInt(request.getParameter("nomina")));
+
+        request.setAttribute("maestro", maestro);
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
-    
-//    public void 
+
+    private void updateMaestro(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String url = request.getContextPath() + "/salones.jsp";
+
+        Maestro newMaestro = new Maestro();
+
+        newMaestro.setNomina(parseInt(request.getParameter("nomina")));
+        newMaestro.setNombre(request.getParameter("nombre"));
+        newMaestro.setNombre(request.getParameter("nombre"));
+        newMaestro.setTelefono(request.getParameter("telefono"));
+
+        newMaestro.update();
+
+        response.sendRedirect(url);
+    }
+
+    private void deleteMaestro(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String url = request.getContextPath() + "/maestros.jsp";
+
+        Maestro maestro = Maestro.get(parseInt(request.getParameter("nomina")));
+
+        maestro.remove();
+
+        response.sendRedirect(url);
+    }
 }
