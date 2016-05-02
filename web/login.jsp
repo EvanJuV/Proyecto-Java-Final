@@ -31,7 +31,7 @@
                         <input type="text" name="username" class="u-full-width">
                     </div>
                     <div class="six columns">
-                        <label for="username">Contraseña</label>
+                        <label for="password">Contraseña</label>
                         <input type="password" name="password" class="u-full-width">
                     </div>
                 </div>

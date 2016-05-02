@@ -30,12 +30,13 @@
                     <th>Telefono</th>
                     <th>Correo</th>
                     <th>Materias Asignadas</th>
+                    <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
                 <% ArrayList<Maestro> A;
-                     A = (ArrayList<Maestro>) request.getAttribute("maestros");
+                     A = Maestro.getAll();
 
                      for(Maestro m : A){ %>
 
@@ -45,11 +46,12 @@
                         <td><%=m.getTelefono()%></td>
                         <td><%=m.getEmail()%></td>
                         <td>
-                            <form method="GET" action="maestros/materias">
+                            <form method="GET" action="${pageContext.request.contextPath}/maestros/materias">
                                 <input name="nomina" type="number" value="<%=m.getNomina()%>" hidden>
                                 <input type="submit" class="button" value="Materias asignadas">
                             </form>
                         </td>
+                        <td><a class="button" href="Eliminar">Editar</a></td>
                         <td><a class="button" href="Eliminar">X</a></td>
                     </tr>
                 </tbody>

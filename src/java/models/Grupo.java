@@ -21,6 +21,10 @@ public class Grupo {
     private int grupo;
     private int idioma;
     private boolean honors;
+    private Maestro maestro;
+    private Materia materia;
+    private Salon salon;
+    private Horario horario;
   
     public Grupo(){}
     
@@ -30,13 +34,20 @@ public class Grupo {
         this.grupo = grupo.getGrupo();
         this.idioma = grupo.getIdioma();
         this.honors = grupo.getHonors();
+        this.materia = grupo.getMateria();
+        this.salon = grupo.getSalon();
+        this.horario = grupo.getHorario();
     }
     
-    public Grupo(String materiaId, int grupo, int idioma, boolean honors) {
+    public Grupo(String materiaId, int grupo, int idioma, boolean honors, Maestro maestro, Materia materia, Salon salon, Horario horario) {
         this.materiaId = materiaId;
         this.grupo = grupo;
         this.idioma = idioma;
         this.honors = honors;
+        this.maestro = maestro;
+        this.materia = materia;
+        this.salon = salon;
+        this.horario = horario;
     }
     
     public static ArrayList<Grupo> getAll() {
@@ -48,8 +59,8 @@ public class Grupo {
     
     public static void main(String args[]){
         byte num = 0;
-        Grupo rish = new Grupo("TC-10029", 1, 1, true);
-        rish.save();
+//        Grupo rish = new Grupo("TC-10029", 1, 1, true);
+//        rish.save();
         ArrayList<Grupo> salones = Grupo.getAll();
         System.out.print(salones.get(0));
     }
@@ -126,5 +137,37 @@ public class Grupo {
 
     public void setHonors(boolean honors) {
         this.honors = honors;
+    }
+    
+    public Maestro getMaestro() {
+        return maestro;
+    }
+
+    public void setMaestro(Maestro maestro) {
+        this.maestro = maestro;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+    
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
+    }
+    
+    public Salon getSalon() {
+        return salon;
+    }
+
+    public void setSalon(Salon salon) {
+        this.salon = salon;
     }
 }

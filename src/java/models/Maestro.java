@@ -37,7 +37,7 @@ public class Maestro {
         this.email = maestro.getEmail();
     }
 
-    private Maestro() {
+    public Maestro() {
     }
     
     public static void main(String[] args) {
@@ -78,7 +78,7 @@ public class Maestro {
     }
     
     public void save() {
-        DbConnection.query(String.format("INSERT INTO maestros VALUES(%d, %s, %s, %s);", this.nomina, this.nombre, this.telefono, this.email));
+        DbConnection.query(String.format("INSERT INTO maestros VALUES(%d, '%s', '%s', '%s');", this.nomina, this.nombre, this.telefono, this.email));
     }
         
     public static ArrayList<Maestro> transformResults(ArrayList<HashMap> result) {

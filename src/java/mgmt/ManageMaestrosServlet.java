@@ -27,11 +27,8 @@ public class ManageMaestrosServlet  extends HttpServlet {
         String[] uri = request.getRequestURI().split("/");
         
         switch(uri[uri.length -1]) {
-            case "maestros":
-                maestros(request, response);
-                break;
-            case "new":
-                newMaestro(request, response);
+            case "crear":
+                crearMaestro(request, response);
                 break;
             case "edit":
                 editMaestro(request, response);
@@ -39,25 +36,33 @@ public class ManageMaestrosServlet  extends HttpServlet {
             case "materias":
                 materiasMaestro(request, response);
                 break;
-            default:
-                maestros(request, response);
-                break;
         }
     }
     
-    public void maestros(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
-        String url = "/maestros.jsp";
-        ArrayList<Maestro> maestros;
-        maestros = Maestro.getAll();
-        
-        request.setAttribute("maestros", maestros);
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-    }
+//    public void maestros(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
+//        String url = "/maestros.jsp";
+//        ArrayList<Maestro> maestros;
+//        maestros = Maestro.getAll();
+//        
+//        request.setAttribute("maestros", maestros);
+//        
+//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+//        dispatcher.forward(request, response);
+//    }
     
-    public void newMaestro(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
+    public void crearMaestro(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
+        String url = request.getContextPath() + "/maestros.jsp";
         
+        Maestro newMaestro = new Maestro();
+        
+        newMaestro.setNomina(parseInt(request.getParameter("nomina")));
+        newMaestro.setNombre(request.getParameter("nombre"));
+        newMaestro.setTelefono(request.getParameter("telefono"));
+        newMaestro.setEmail(request.getParameter("email"));
+        
+        newMaestro.save();
+        
+        response.sendRedirect(url);
     }
     
     public void materiasMaestro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -78,4 +83,6 @@ public class ManageMaestrosServlet  extends HttpServlet {
     public void editMaestro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+    
+//    public void 
 }

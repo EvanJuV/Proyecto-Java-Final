@@ -11,16 +11,16 @@
             <a href="menu.jsp">Inicio</a>
         </li>
         <li class="navbar-item">
-            <a href="maestros">Maestros</a>
+            <a href="maestros.jsp">Maestros</a>
         </li>
         <li class="navbar-item">
-            <a href="salones">Salones</a>
+            <a href="salones.jsp">Salones</a>
         </li>
         <li class="navbar-item">
-            <a href="materias">Materias</a>
+            <a href="materias.jsp">Materias</a>
         </li>
         <li class="navbar-item">
-            <a href="grupos">Grupos</a>
+            <a href="grupos.jsp">Grupos</a>
         </li>
     </ul>
 </nav>

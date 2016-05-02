@@ -24,7 +24,7 @@
         <% Maestro maestro = (Maestro) request.getAttribute("maestro"); %>
         
         <div class="container push-top">
-            <h2>Materias de: <%=maestro.getNombre()%></h2>
+            <h2>Grupos asignados de: <%=maestro.getNombre()%></h2>
             <table class="u-full-width">
                 <thead>
                     <tr>
@@ -44,7 +44,7 @@
 
                     <tr>
                         <td><%=m.getNombre()%></td>
-
+                        
                     </tr>
                 </tbody>
                 <% }%>
