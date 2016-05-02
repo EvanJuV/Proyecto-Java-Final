@@ -109,7 +109,7 @@ public class DbConnection {
                         row.put(heads.get(i), rs.getString(i + 1));
                         break;
                     case Types.INTEGER:
-                        row.put(heads.get(i), rs.getLong(i + 1));
+                        row.put(heads.get(i), rs.getInt(i + 1));
                         break;
                     case Types.DOUBLE:
                         row.put(heads.get(i), rs.getDouble(i + 1));
