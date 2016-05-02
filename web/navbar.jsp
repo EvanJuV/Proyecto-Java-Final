@@ -11,7 +11,7 @@
             <a href="menu.jsp">Inicio</a>
         </li>
         <li class="navbar-item">
-            <a href="maestros">Maestros</a>
+            <a href="maestros.jsp">Maestros</a>
         </li>
         <li class="navbar-item">
             <a href="salones">Salones</a>
