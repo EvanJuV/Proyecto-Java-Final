@@ -14,14 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Evan
+ * @author erick
  */
-public class ManageMateriasServlet extends HttpServlet {
-    public void service(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        String[] uri = request.getRequestURI().split("/");
-        
-    }
+public class ManageGruposServlet extends HttpServlet{
+    
 }
