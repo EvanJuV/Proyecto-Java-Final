@@ -15,6 +15,7 @@ import java.util.HashMap;
  */
 public class Salon {
     
+    private int id;
     private int numeroSalon;
     private int capacidad;
     private String departamento;
@@ -25,6 +26,13 @@ public class Salon {
         this.numeroSalon = numeroSalon;
         this.capacidad = capacidad;
         this.departamento = departamento;
+    }
+    
+    public Salon(Salon salon) {
+        this.id = salon.getId();
+        this.numeroSalon = salon.getNumeroSalon();
+        this.capacidad = salon.getCapacidad();
+        this.departamento = salon.getDepartamento();
     }
     
     public static ArrayList<Salon> getAll() {
@@ -42,15 +50,15 @@ public class Salon {
     }
     
     public void update() {
-        DbConnection.query(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento='%s' WHERE numeroSalon=%d AND departamento='%s';", this.numeroSalon, this.capacidad, this.departamento, this.numeroSalon, this.departamento));
+        DbConnection.query(String.format("UPDATE salones SET numero_salon=%d, capacidad=%d, departamento='%s' WHERE id=%d;", this.numeroSalon, this.capacidad, this.departamento, this.id));
     }
     
     public void remove() {
-        DbConnection.query(String.format("DELETE FROM salones WHERE numeroSalon=%d AND capacidad=%d AND departamento='%s';", this.numeroSalon, this.capacidad, this.departamento));
+        DbConnection.query(String.format("DELETE FROM salones WHERE id=%d;", this.id));
     }
     
     public void save() {
-        DbConnection.query(String.format("INSERT INTO salones (numeroSalon, capacidad, departamento) VALUES (%d, %d, '%s');", this.numeroSalon, this.capacidad, this.departamento));
+        DbConnection.query(String.format("INSERT INTO salones (numero_salon, capacidad, departamento) VALUES (%d, %d, '%s');", this.numeroSalon, this.capacidad, this.departamento));
     }
     
     public static ArrayList<Salon> transformResults(ArrayList<HashMap> result) {
@@ -66,11 +74,16 @@ public class Salon {
     public static Salon hashToObject(HashMap hm) {
         Salon newSalon = new Salon();
         
-        newSalon.numeroSalon = (int) hm.get("numeroSalon");
+        newSalon.id = (int) hm.get("id");
+        newSalon.numeroSalon = (int) hm.get("numero_salon");
         newSalon.capacidad = (int) hm.get("capacidad");
         newSalon.departamento = (String) hm.get("departamento");
         
         return newSalon;
+    }
+    
+    public int getId() {
+        return id;
     }
     
     public int getNumeroSalon() {

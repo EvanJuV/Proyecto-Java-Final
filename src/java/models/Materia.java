@@ -18,9 +18,6 @@ import java.util.Map;
 public class Materia {
 
     // Atributos de clase
-    public void setHorasLaboratorio(int horasLaboratorio) {
-        this.horasLaboratorio = horasLaboratorio;
-    }
     private String clave;
     private String nombre;
     private int horasLaboratorio;
@@ -29,6 +26,12 @@ public class Materia {
         this.clave = clave;
         this.nombre = nombre;
         this.horasLaboratorio = horasLaboratorio;
+    }
+    
+    public Materia(Materia materia) {
+        this.clave = materia.getClave();
+        this.nombre = materia.getNombre();
+        this.horasLaboratorio = materia.getHorasLaboratorio();
     }
 
     private Materia() {
@@ -46,10 +49,10 @@ public class Materia {
     }
 
     public static ArrayList<Materia> get(HashMap hm) {
-        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM Maestros WHERE nomina='%d';");
-        ArrayList<Materia> maestros = transformResults(result);
+        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM materias WHERE nomina='%d';");
+        ArrayList<Materia> materias = transformResults(result);
 
-        return maestros;
+        return materias;
     }
 
     public void update() {
@@ -80,9 +83,9 @@ public class Materia {
     public static Materia hashToObject(HashMap hm) {
         Materia newMateria = new Materia();
 
-        newMateria.clave = (String) hm.get("nomina");
+        newMateria.clave = (String) hm.get("clave");
         newMateria.nombre = (String) hm.get("nombre");
-        newMateria.horasLaboratorio = (int) hm.get("telefono");
+        newMateria.horasLaboratorio = (int) hm.get("horas_laboratorio");
 
         return newMateria;
     }
@@ -105,5 +108,9 @@ public class Materia {
 
     public int getHorasLaboratorio() {
         return horasLaboratorio;
+    }
+    
+    public void setHorasLaboratorio(int horasLaboratorio) {
+        this.horasLaboratorio = horasLaboratorio;
     }
 }

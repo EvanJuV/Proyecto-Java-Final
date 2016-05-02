@@ -52,7 +52,10 @@ public class Maestro {
     }
     
     public static ArrayList<Materia> getMaterias(int nomina) {
-        DbConnection.select("SELECT ");
+        ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM materias m JOIN grupos g ON m.clave=g.materia_id JOIN maestros_grupos mtg ON g.id=mtg.grupo_id WHERE mtg.maestro_id=%d", nomina));
+        ArrayList<Materia> materias = Materia.transformResults(result);
+        
+        return materias;
     }
     
     public void update() {

@@ -20,35 +20,35 @@
     <body>
         <div class="container">
             <h1>Maestros</h1>
-           <table class="u-full-width">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Nomina</th>
-      <th>Telefono</th>
-      <th>Correo</th>
-      <th>Materias Asignadas</th>
-      <th>Eliminar</th>
-    </tr>
-  </thead>
-  <tbody>
-      <% ArrayList<Maestro> A;
-           A = Maestro.getAll();
-           
-           for(Maestro m : A){ %>
+            <a href="nuevo_maestro.jsp">Nuevo maestro</a>
+            <table class="u-full-width">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Nomina</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Materias Asignadas</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% ArrayList<Maestro> A;
+                     A = Maestro.getAll();
+
+                     for(Maestro m : A){ %>
             
-   <tr>
-               <td><%=m.getNombre()%></td>
-               <td><%=m.getNomina()%></td>
-               <td><%=m.getTelefono()%></td>
-               <td><%=m.getEmail()%></td>
-               <td><a class="button" href="login.jsp">Materias Asignadas</a></td>
-                <td><a class="button" href="Eliminar">X</a></td>
-           </tr>
-        
-  </tbody>
-   <% } %>
-</table>
+                    <tr>
+                        <td><%=m.getNombre()%></td>
+                        <td><%=m.getNomina()%></td>
+                        <td><%=m.getTelefono()%></td>
+                        <td><%=m.getEmail()%></td>
+                        <td><a class="button" href="login.jsp">Materias Asignadas</a></td>
+                        <td><a class="button" href="Eliminar">X</a></td>
+                    </tr>
+                </tbody>
+                <% } %>
+            </table>
         </div>
     </body>
 </html>
