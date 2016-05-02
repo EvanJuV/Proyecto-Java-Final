@@ -14,7 +14,7 @@ import java.util.HashMap;
  * @author Evan
  */
 public class Salon {
-    // Atributos de clase
+    
     private int numeroSalon;
     private int capacidad;
     private String departamento;
@@ -27,14 +27,26 @@ public class Salon {
         this.departamento = departamento;
     }
     
-    public ArrayList<Salon> getAll() {
+    public static ArrayList<Salon> getAll() {
         ArrayList<HashMap> result = DbConnection.executeQuery("SELECT * FROM salones;");
         ArrayList<Salon> salones = transformResults(result);
         
         return salones;
     }
     
-    public ArrayList<Salon> transformResults(ArrayList<HashMap> result) {
+    public void update() {
+        DbConnection.executeQuery(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento=%s WHERE numeroSalon=%d, departamento=%s;", this.numeroSalon, this.capacidad, this.departamento, this.numeroSalon, this.departamento));
+    }
+    
+    public void remove() {
+        DbConnection.executeQuery(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento=%s;", this.numeroSalon, this.capacidad, this.departamento));
+    }
+    
+    public void save() {
+        DbConnection.executeQuery(String.format("INSERT INTO salones (numeroSalon, capacidad, departamento) VALUES(%d, %d, %s);", this.numeroSalon, this.capacidad, this.departamento));
+    }
+    
+    public static ArrayList<Salon> transformResults(ArrayList<HashMap> result) {
         ArrayList<Salon> newResult = null;
         
         for (HashMap hm : result) {
@@ -44,7 +56,7 @@ public class Salon {
         return newResult;
     }
     
-    public Salon hashToObject(HashMap hm) {
+    public static Salon hashToObject(HashMap hm) {
         Salon newSalon = new Salon();
         
         newSalon.numeroSalon = (int) hm.get("numeroSalon");
@@ -52,5 +64,30 @@ public class Salon {
         newSalon.departamento = (String) hm.get("departamento");
         
         return newSalon;
+    }
+    
+    public int getNumeroSalon() {
+        return numeroSalon;
+    }
+
+    public void setNumeroSalon(int numeroSalon) {
+        this.numeroSalon = numeroSalon;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    // Atributos de clase
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 }
