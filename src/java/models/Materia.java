@@ -46,23 +46,7 @@ public class Materia {
     }
 
     public static ArrayList<Materia> get(HashMap hm) {
-        String queryString = "SELECT * FROM Materias WHERE ";
-        Iterator it = hm.entrySet().iterator();
-
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            queryString += pair.getKey() + "=" + (pair.getValue() == (Integer) pair.getValue() ? pair.getValue() : "'" + pair.getValue() + "'");
-
-            if (it.hasNext()) {
-                queryString += " AND ";
-            }
-
-            it.remove();
-        }
-
-        queryString += ";";
-
-        ArrayList<HashMap> result = DbConnection.select(queryString);
+        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM Maestros WHERE nomina='%d';");
         ArrayList<Materia> maestros = transformResults(result);
 
         return maestros;

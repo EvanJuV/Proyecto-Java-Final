@@ -34,7 +34,7 @@ public class Maestro {
     }
     
     public static void main(String[] args) {
-        System.out.println(getAll());
+            
     }
     
     public static ArrayList<Maestro> getAll() {
@@ -44,27 +44,15 @@ public class Maestro {
         return maestros;
     }
     
-    public static ArrayList<Maestro> get(HashMap hm) {
-        String queryString = "SELECT * FROM Maestros WHERE ";
-        Iterator it = hm.entrySet().iterator();
-        
-        while(it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            queryString += pair.getKey() + "=" + (pair.getValue() == (Integer) pair.getValue() ? pair.getValue() : "'" + pair.getValue() + "'");
-            
-            if(it.hasNext()) {
-                queryString += " AND ";
-            }
-            
-            it.remove();
-        }
-        
-        queryString += ";";
-        
-        ArrayList<HashMap> result = DbConnection.select(queryString);
+    public static ArrayList<Maestro> get(int nomina) {
+        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM Maestros WHERE nomina='%d';");
         ArrayList<Maestro> maestros = transformResults(result);
         
         return maestros;
+    }
+    
+    public static ArrayList<Materia> getMaterias(int nomina) {
+        DbConnection.select("SELECT ");
     }
     
     public void update() {
