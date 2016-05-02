@@ -20,6 +20,8 @@ public class ManageMaestrosServlet  extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
         String url = "/response.jsp"; //mueve esto muchacho
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        String[] req = request.getRequestURI().split("/");
+        System.out.println(req);
         dispatcher.forward(request, response);
     }
 }
