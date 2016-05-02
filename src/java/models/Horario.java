@@ -5,9 +5,13 @@
  */
 package models;
 
+import database.DbConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
- * @author erick
+ * @author Evan
  */
 public class Horario {
     
