@@ -94,7 +94,7 @@ public class Grupo {
         newGrupo.materiaId = (String) hm.get("materia_id");
         newGrupo.grupo = (int) hm.get("grupo");
         newGrupo.idioma = (int) hm.get("idioma");
-        newGrupo.honors = (boolean) hm.get("honors");
+       // newGrupo.honors = (boolean) hm.get("honors");
         
         return newGrupo;
     }
