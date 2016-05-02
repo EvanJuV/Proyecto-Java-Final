@@ -8,7 +8,7 @@
 <nav class="navbar">
     <ul class="navbar-list">
         <li class="navbar-item">
-            <a href="#">Inicio</a>
+            <a href="menu.jsp">Inicio</a>
         </li>
         <li class="navbar-item">
             <a href="maestros">Maestros</a>

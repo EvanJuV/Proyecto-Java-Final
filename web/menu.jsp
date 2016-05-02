@@ -19,7 +19,7 @@
         <div class="container">
             <div class="header">
                 <h2>Menú principal</h2>
-                
+                <jsp:include page="navbar.jsp"/>
             </div>
         </div>
     </body>
