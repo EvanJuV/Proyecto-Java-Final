@@ -15,6 +15,7 @@ and open the template in the editor.
         <title>Sistema de manejo de inscripciones</title>
     </head>
     <body>
+        <jsp:include page="navbar.jsp"/>
         <div class="container">
             <section class="header">
                 <h2>Error 404! <br> La página que buscas no existe</h2>
