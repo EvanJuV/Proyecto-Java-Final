@@ -37,8 +37,8 @@
                      A = Maestro.getAll();
 
                      for(Maestro m : A){ %>
-            
-                    <tr>
+
+                     <tr>
                         <td><%=m.getNombre()%></td>
                         <td><%=m.getNomina()%></td>
                         <td><%=m.getTelefono()%></td>
