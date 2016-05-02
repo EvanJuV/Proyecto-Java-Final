@@ -18,9 +18,10 @@
         <title>Maestros</title>
     </head>
     <body>
-        <div class="container">
-            <h1>Maestros</h1>
-            <a href="nuevo_maestro.jsp">Nuevo maestro</a>
+        <jsp:include page="navbar.jsp"/>
+        <div class="container push-top">
+            <h2>Maestros</h2>
+            <a href="nuevo_maestro.jsp" class="button button-primary">Nuevo maestro</a>
             <table class="u-full-width">
                 <thead>
                   <tr>
@@ -34,7 +35,7 @@
                 </thead>
                 <tbody>
                 <% ArrayList<Maestro> A;
-                     A = Maestro.getAll();
+                     A = (ArrayList<Maestro>) request.getAttribute("maestros");
 
                      for(Maestro m : A){ %>
 
@@ -43,7 +44,12 @@
                         <td><%=m.getNomina()%></td>
                         <td><%=m.getTelefono()%></td>
                         <td><%=m.getEmail()%></td>
-                        <td><a class="button" href="login.jsp">Materias Asignadas</a></td>
+                        <td>
+                            <form method="GET" action="maestros/materias">
+                                <input name="nomina" type="number" value="<%=m.getNomina()%>" hidden>
+                                <input type="submit" class="button" value="Materias asignadas">
+                            </form>
+                        </td>
                         <td><a class="button" href="Eliminar">X</a></td>
                     </tr>
                 </tbody>

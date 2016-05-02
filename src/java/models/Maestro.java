@@ -51,11 +51,12 @@ public class Maestro {
         return maestros;
     }
     
-    public static ArrayList<Maestro> get(int nomina) {
-        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM Maestros WHERE nomina='%d';");
+    public static Maestro get(int nomina) {
+        ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM Maestros WHERE nomina=%d;", nomina));
         ArrayList<Maestro> maestros = transformResults(result);
+        Maestro maestro = !maestros.isEmpty() ? maestros.get(0) : new Maestro();
         
-        return maestros;
+        return maestro;
     }
     
     public static ArrayList<Materia> getMaterias(int nomina) {
@@ -81,7 +82,7 @@ public class Maestro {
     }
         
     public static ArrayList<Maestro> transformResults(ArrayList<HashMap> result) {
-        ArrayList<Maestro> newResult = new ArrayList<Maestro>();
+        ArrayList<Maestro> newResult = new ArrayList<>();
         
         for (HashMap hm : result) {
             

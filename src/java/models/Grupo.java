@@ -14,13 +14,13 @@ import java.util.HashMap;
  * @author Evan
  */
 public class Grupo {
-
    
+    // Atributos de clase
     private int id;
-    private int materiaId;
+    private String materiaId;
     private int grupo;
     private int idioma;
-    private byte honors;
+    private boolean honors;
   
     public Grupo(){}
     
@@ -32,7 +32,7 @@ public class Grupo {
         this.honors = grupo.getHonors();
     }
     
-    public Grupo(int materiaId, int grupo, int idioma, byte honors) {
+    public Grupo(String materiaId, int grupo, int idioma, boolean honors) {
         this.materiaId = materiaId;
         this.grupo = grupo;
         this.idioma = idioma;
@@ -48,7 +48,7 @@ public class Grupo {
     
     public static void main(String args[]){
         byte num = 0;
-        Grupo rish = new Grupo(1, 1, 1, num);
+        Grupo rish = new Grupo("TC-10029", 1, 1, true);
         rish.save();
         ArrayList<Grupo> salones = Grupo.getAll();
         System.out.print(salones.get(0));
@@ -80,10 +80,10 @@ public class Grupo {
         Grupo newGrupo = new Grupo();
         
         newGrupo.id = (int) hm.get("id");
-        newGrupo.materiaId = (int) hm.get("materia_id");
+        newGrupo.materiaId = (String) hm.get("materia_id");
         newGrupo.grupo = (int) hm.get("grupo");
         newGrupo.idioma = (int) hm.get("idioma");
-        newGrupo.honors = (byte) hm.get("honors");
+        newGrupo.honors = (boolean) hm.get("honors");
         
         return newGrupo;
     }
@@ -96,11 +96,11 @@ public class Grupo {
         this.id = id;
     }
     
-    public int getMateriaId() {
+    public String getMateriaId() {
         return materiaId;
     }
 
-    public void setMateriaId(int materiaId) {
+    public void setMateriaId(String materiaId) {
         this.materiaId = materiaId;
     }
 
@@ -120,11 +120,11 @@ public class Grupo {
         this.idioma = idioma;
     }
 
-    public byte getHonors() {
+    public boolean getHonors() {
         return honors;
     }
 
-    public void setHonors(byte honors) {
+    public void setHonors(boolean honors) {
         this.honors = honors;
     }
 }
