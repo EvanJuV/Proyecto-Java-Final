@@ -37,15 +37,16 @@ public class Salon {
     public static void main(String args[]){
         Salon rish = new Salon(1, 1, "Rishurd");
         //rish.save();
-        System.out.print(Salon.getAll());
+        ArrayList<Salon> salones = Salon.getAll();
+        System.out.print(salones.get(0));
     }
     
     public void update() {
-        DbConnection.query(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento='%s' WHERE numeroSalon=%d, departamento='%s';", this.numeroSalon, this.capacidad, this.departamento, this.numeroSalon, this.departamento));
+        DbConnection.query(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento='%s' WHERE numeroSalon=%d AND departamento='%s';", this.numeroSalon, this.capacidad, this.departamento, this.numeroSalon, this.departamento));
     }
     
     public void remove() {
-        DbConnection.query(String.format("UPDATE salones SET numeroSalon=%d, capacidad=%d, departamento='%s';", this.numeroSalon, this.capacidad, this.departamento));
+        DbConnection.query(String.format("DELETE FROM salones WHERE numeroSalon=%d AND capacidad=%d AND departamento='%s';", this.numeroSalon, this.capacidad, this.departamento));
     }
     
     public void save() {
