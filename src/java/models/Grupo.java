@@ -14,12 +14,23 @@ import java.util.HashMap;
  * @author Evan
  */
 public class Grupo {
+
+   
+    private int id;
     private int materiaId;
     private int grupo;
     private int idioma;
     private byte honors;
   
     public Grupo(){}
+    
+    public Grupo(Grupo grupo){
+        this.id = grupo.getId();
+        this.materiaId = grupo.getMateriaId();
+        this.grupo = grupo.getGrupo();
+        this.idioma = grupo.getIdioma();
+        this.honors = grupo.getHonors();
+    }
     
     public Grupo(int materiaId, int grupo, int idioma, byte honors) {
         this.materiaId = materiaId;
@@ -29,10 +40,10 @@ public class Grupo {
     }
     
     public static ArrayList<Grupo> getAll() {
-        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM programaciongrupos;");
-        ArrayList<Grupo> salones = transformResults(result);
+        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM grupos;");
+        ArrayList<Grupo> grupos = transformResults(result);
         
-        return salones;
+        return grupos;
     }
     
     public static void main(String args[]){
@@ -44,15 +55,15 @@ public class Grupo {
     }
     
     public void update() {
-        DbConnection.query(String.format("UPDATE programaciongrupos SET materiaId=%d, grupo=%d idioma=%d, honors=%d WHERE materiaId=%d AND grupo=%d;", this.materiaId, this.grupo, this.idioma, this.honors, this.materiaId, this.grupo));
+        DbConnection.query(String.format("UPDATE grupos SET materia_id=%d, grupo=%d idioma=%d, honors=%d WHERE id=%d;", this.materiaId, this.grupo, this.idioma, this.honors, this.materiaId, this.id));
     }
     
     public void remove() {
-        DbConnection.query(String.format("DELETE FROM programaciongrupos WHERE materiaId=%d AND grupo=%d AND idioma=%d AND honors=%d;", this.materiaId, this.grupo, this.idioma, this.honors));
+        DbConnection.query(String.format("DELETE FROM grupos WHERE id=%d;", this.id));
     }
     
     public void save() {
-        DbConnection.query(String.format("INSERT INTO programaciongrupos (materiaId, grupo, idioma, honors) VALUES (%d, %d, %d, %d);", this.materiaId, this.grupo, this.idioma, this.honors));
+        DbConnection.query(String.format("INSERT INTO grupos (materia_id, grupo, idioma, honors) VALUES (%d, %d, %d, %d);", this.materiaId, this.grupo, this.idioma, this.honors));
     }
     
     public static ArrayList<Grupo> transformResults(ArrayList<HashMap> result) {
@@ -68,12 +79,21 @@ public class Grupo {
     public static Grupo hashToObject(HashMap hm) {
         Grupo newGrupo = new Grupo();
         
-        newGrupo.materiaId = (int) hm.get("materiaId");
+        newGrupo.id = (int) hm.get("id");
+        newGrupo.materiaId = (int) hm.get("materia_id");
         newGrupo.grupo = (int) hm.get("grupo");
         newGrupo.idioma = (int) hm.get("idioma");
         newGrupo.honors = (byte) hm.get("honors");
         
         return newGrupo;
+    }
+    
+     public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public int getMateriaId() {
