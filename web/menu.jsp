@@ -19,25 +19,7 @@
         <div class="container">
             <div class="header">
                 <h2>Menú principal</h2>
-                <nav class="navbar">
-                    <ul class="navbar-list">
-                        <li class="navbar-item">
-                            <a href="#">Inicio</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="maestros">Maestros</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="salones">Salones</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="materias">Materias</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="grupos">Grupos</a>
-                        </li>
-                    </ul>
-                </nav>
+                <jsp:include page="navbar.jsp"/>
             </div>
         </div>
     </body>

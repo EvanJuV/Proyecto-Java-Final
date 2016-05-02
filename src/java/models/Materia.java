@@ -16,8 +16,11 @@ import java.util.Map;
  * @author Evan
  */
 public class Materia {
-    
+
     // Atributos de clase
+    public void setHorasLaboratorio(int horasLaboratorio) {
+        this.horasLaboratorio = horasLaboratorio;
+    }
     private String clave;
     private String nombre;
     private int horasLaboratorio;
@@ -98,5 +101,25 @@ public class Materia {
         newMateria.horasLaboratorio = (int) hm.get("telefono");
 
         return newMateria;
+    }
+    
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getHorasLaboratorio() {
+        return horasLaboratorio;
     }
 }
