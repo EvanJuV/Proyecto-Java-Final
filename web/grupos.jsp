@@ -28,7 +28,7 @@
       <th>Grupo</th>
       <th>Idioma</th>
       <th>Honors</th>
-      <th>xxxx</th>
+      <th>Editar</th>
       <th>Eliminar</th>
     </tr>
   </thead>
@@ -39,9 +39,12 @@
            for(Grupo n : A){ %>
             
    <tr>
-               <td><%=n.getMateriaId()%></td>
-               <td><%=n.getGrupo()%></td>
-               <td><%=n.getIdioma()%></td>
+                <td><%=n.getMateriaId()%></td>
+                <td><%=n.getGrupo()%></td>
+                <td><%=n.getIdioma()%></td>
+                <td></td>
+                <td><a class="button" href="Eliminar">Editar</a></td>
+                <td><a class="button" href="Eliminar">X</a></td>
               
                
            </tr>
