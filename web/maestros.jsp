@@ -43,7 +43,7 @@
                <td><%=m.getTelefono()%></td>
                <td><%=m.getEmail()%></td>
                <td><a class="button" href="login.jsp">Materias Asignadas</a></td>
-                <td><a class="button" href="Eliminar">X</a></td>
+               <td><a class="button" href="eliminar.jsp?id=<%=m.getNomina()%>">X</a></td>
            </tr>
         
   </tbody>
