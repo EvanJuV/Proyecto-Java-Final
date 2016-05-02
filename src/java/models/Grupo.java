@@ -38,13 +38,13 @@ public class Grupo {
     public static void main(String args[]){
         byte num = 0;
         Grupo rish = new Grupo(1, 1, 1, num);
-        //rish.save();
+        rish.save();
         ArrayList<Grupo> salones = Grupo.getAll();
         System.out.print(salones.get(0));
     }
     
     public void update() {
-        DbConnection.query(String.format("UPDATE programaciongrupos SET materiaId=%d, grupo=%d idioma=%d, honors=%d WHERE materiaId=%d AND grupo=%d;", this.materiaId, this.grupo, this.idioma, this.materiaId, this.grupo));
+        DbConnection.query(String.format("UPDATE programaciongrupos SET materiaId=%d, grupo=%d idioma=%d, honors=%d WHERE materiaId=%d AND grupo=%d;", this.materiaId, this.grupo, this.idioma, this.honors, this.materiaId, this.grupo));
     }
     
     public void remove() {
