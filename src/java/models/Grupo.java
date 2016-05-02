@@ -143,7 +143,7 @@ public class Grupo {
         newGrupo.materiaId = (String) hm.get("materia_id");
         newGrupo.grupo = (int) hm.get("grupo");
         newGrupo.idioma = (int) hm.get("idioma");
-        System.out.println(hm.get("honors"));
+//        System.out.println(hm.get("honors"));
         newGrupo.honors = (boolean) hm.get("honors");
         newGrupo.horarios = getHorarios(result, newGrupo.getId());
         newGrupo.materia = Materia.hashToObject(hm);
