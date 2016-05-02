@@ -31,16 +31,17 @@ public class ManageUsuariosServlet extends HttpServlet {
         
         if(Usuario.validate(username, password)) {
             HttpSession newSession = request.getSession();
-            url = "/menu.jsp";
+            url = "menu.jsp";
+            response.sendRedirect(url);
         }
         else {
             request.setAttribute("error_msg", "Error, la combinación de contraseña y usuario no es válida");
 
-            url = "/index.jsp";
+            url = "/login.jsp";
+            
+            RequestDispatcher dispatcher
+                    = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
-        
-        RequestDispatcher dispatcher
-                = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
     }
 }
