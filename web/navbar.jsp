@@ -20,6 +20,9 @@
             <a href="materias.jsp">Materias</a>
         </li>
         <li class="navbar-item">
+            <a href="programacion.jsp">Programacion de Grupos</a>
+        </li>
+        <li class="navbar-item">
             <a href="grupos.jsp">Grupos</a>
         </li>
     </ul>
