@@ -19,8 +19,10 @@
         <title>Grupos</title>
     </head>
     <body>
-        <div class="container">
-            <h1>Grupos</h1>
+        <jsp:include page="navbar.jsp"/>
+        <div class="container push-top">
+            <h2>Grupos</h2>
+            <a href="nuevo_grupo.jsp" class="button button-primary">Nuevo grupo</a>
            <table class="u-full-width">
   <thead>
     <tr>
@@ -33,7 +35,7 @@
     </tr>
   </thead>
   <tbody>
-      <jsp:include page="navbar.jsp"/>
+      
       <% ArrayList<Grupo> A;
            A = Grupo.getAll();
            
@@ -43,10 +45,18 @@
                 <td><%=n.getMateriaId()%></td>
                 <td><%=n.getGrupo()%></td>
                 <td><%=n.getIdioma()%></td>
-                <td></td>
-                <td><a class="button" href="Eliminar">Editar</a></td>
-                <td><a class="button" href="Eliminar">X</a></td>
-              
+                <td>
+                    <form method="GET" action="${pageContext.request.contextPath}/grupos/edit">
+                                <input name="id" value="<%=n.getId()%>" hidden/>
+                                <input type="submit" class="button" value="Edit"/> 
+                    </form>
+                </td>
+                <td>
+                    <form method="DELETE" action="${pageContext.request.contextPath}/grupos/delete">
+                                <input name="id" value="<%=n.getId()%>" hidden/>
+                                <input type="submit" class="button" value="X"/>
+                    </form>
+                </td>              
                
            </tr>
         
