@@ -33,6 +33,10 @@
                         run = false;
                         msg += '<br>El nombre debe solo contener letras';
                     }
+                    if (!telefono.value.match(/([0-9])/)) {
+                        run = false;
+                        msg += '<br>Solamente numeros';
+                    }
                     if (!email.value.match(/([a-zA-Z@-_.0-9])/)) {
                         run = false;
                         msg += '<br>Escribe un Email valido';
