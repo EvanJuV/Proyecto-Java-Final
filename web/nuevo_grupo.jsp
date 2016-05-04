@@ -49,7 +49,7 @@
         <jsp:include page="navbar.jsp"/>
         <div class="container push-top">
             <h2>Nuevo grupo</h2>
-            <span style="color:red; font-weight: bolder;" id="error"></span>
+            <span style="color:red; font-weight: bold;" id="error"></span>
             <form name="GrupoEdit-form" method="POST" action="${pageContext.request.contextPath}/grupos/crear" id="group-form">
                 <div class="row">
                     <div class="four columns">
@@ -132,7 +132,6 @@
             </form>
         </div>
     </body>
-    
     <script>
         var container = document.getElementById("classContainer");
         var newNode = container.innerHTML;
