@@ -18,7 +18,6 @@ public class Grupo {
    
     // Atributos de clase
     private int id;
-    private String materiaId;
     private int grupo;
     private int idioma;
     private boolean honors;
@@ -31,7 +30,6 @@ public class Grupo {
     
     public Grupo(Grupo grupo){
         this.id = grupo.getId();
-        this.materiaId = grupo.getMateriaId();
         this.grupo = grupo.getGrupo();
         this.idioma = grupo.getIdioma();
         this.honors = grupo.getHonors();
@@ -41,8 +39,7 @@ public class Grupo {
         this.maestros = grupo.getMaestros();
     }
     
-    public Grupo(String materiaId, int grupo, int idioma, boolean honors, ArrayList<Pair> maestro, Materia materia, ArrayList<Salon> salon, ArrayList<Pair> horario) {
-        this.materiaId = materiaId;
+    public Grupo(int grupo, int idioma, boolean honors, ArrayList<Pair> maestro, Materia materia, ArrayList<Salon> salon, ArrayList<Pair> horario) {
         this.grupo = grupo;
         this.idioma = idioma;
         this.honors = honors;
@@ -65,11 +62,11 @@ public class Grupo {
         ArrayList<Pair> h = new ArrayList();
         h.add(horarios);
         
-        Grupo grp = new Grupo("1532", 1, 1, true, m, Materia.get("1532"), s, h);
+        Grupo grp = new Grupo(1, 1, true, m, Materia.get("1532"), s, h);
         
 //        grp.save();
 
-        ArrayList<Grupo> gr = getAll();
+//        ArrayList<Grupo> gr = getAll();
     }
     
     public static ArrayList<Grupo> getAll() {
@@ -103,7 +100,7 @@ public class Grupo {
     }
     
     public void update() {
-        DbConnection.query(String.format("UPDATE grupos SET materia_id=%d, grupo=%d idioma=%d, honors=%d WHERE id=%d;", this.materiaId, this.grupo, this.idioma, this.honors, this.materiaId, this.id));
+        DbConnection.query(String.format("UPDATE grupos SET materia_id='%s', grupo=%d idioma=%d, idioma=%d, honors=%b WHERE id=%d;", this.materia.getClave(), this.grupo, this.idioma, this.honors, this.id));
     }
     
     public void remove() {
@@ -111,7 +108,7 @@ public class Grupo {
     }
     
     public void save() {
-        int id = DbConnection.query(String.format("INSERT INTO grupos (materia_id, grupo, idioma, honors) VALUES ('%s', %d, %d, %b);", this.materiaId, this.grupo, this.idioma, this.honors));
+        int id = DbConnection.query(String.format("INSERT INTO grupos (materia_id, grupo, idioma, honors) VALUES ('%s', %d, %d, %b);", this.materia.getClave(), this.grupo, this.idioma, this.honors));
         System.out.println(id);
         for(Pair m : this.maestros) {
             DbConnection.query(String.format("INSERT INTO maestros_grupos (maestro_id, grupo_id, porcentaje) VALUES (%d, %d, %f);", ((Maestro) m.getObj()).getNomina(), id, 0.5));
@@ -140,7 +137,6 @@ public class Grupo {
         Grupo newGrupo = new Grupo();
         
         newGrupo.id = (int) hm.get("id");
-        newGrupo.materiaId = (String) hm.get("materia_id");
         newGrupo.grupo = (int) hm.get("grupo");
         newGrupo.idioma = (int) hm.get("idioma");
 //        System.out.println(hm.get("honors"));
@@ -156,12 +152,9 @@ public class Grupo {
     public static ArrayList<Pair> getHorarios(ArrayList<HashMap> results, int id) {
         ArrayList<Pair> horarios = new ArrayList<>();
         
-        for(HashMap hm : results) {
-            if(id == (int) hm.get("id")) {
-                Pair p = new Pair(Horario.hashToObject(hm), (int) hm.get("laboratorio"));
-                horarios.add(p);
-            }
-        }
+        results.stream().filter((hm) -> (id == (int) hm.get("id"))).map((hm) -> new Pair(Horario.hashToObject(hm), (int) hm.get("laboratorio"))).forEach((p) -> {
+            horarios.add(p);
+        });
         
         return horarios;
     }
@@ -193,14 +186,6 @@ public class Grupo {
 
     public void setId(int id) {
         this.id = id;
-    }
-    
-    public String getMateriaId() {
-        return materiaId;
-    }
-
-    public void setMateriaId(String materiaId) {
-        this.materiaId = materiaId;
     }
 
     public int getGrupo() {

@@ -1,5 +1,5 @@
 DROP DATABASE Inscripciones;
-CREATE DATABASE Inscripciones;
+CREATE DATABASE Inscripciones DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;;
 USE Inscripciones;
 
 CREATE TABLE Usuarios(
@@ -52,28 +52,18 @@ CREATE TABLE grupos(
     FOREIGN KEY(materia_id) REFERENCES materias(clave)
 );
 
-CREATE TABLE maestros_grupos(
+CREATE TABLE grupos_details(
+    grupo_id int NOT NULL,
     maestro_id int NOT NULL,
-    grupo_id int NOT NULL,
-    porcentaje float NOT NULL,
-    PRIMARY KEY(maestro_id, grupo_id),
-    FOREIGN KEY(maestro_id) REFERENCES Maestros(nomina),
-    FOREIGN KEY(grupo_id) REFERENCES grupos(id)
-);
-
-CREATE TABLE horarios_grupos(
-    horario_id int NOT NULL,
-    grupo_id int NOT NULL,
-    laboratorio boolean NOT NULL DEFAULT false,
-    PRIMARY KEY(horario_id, grupo_id),
-    FOREIGN KEY(horario_id) REFERENCES Horarios(id),
-    FOREIGN KEY(grupo_id) REFERENCES grupos(id)
-);
-
-CREATE TABLE salones_grupos(
     salon_id int NOT NULL,
-    grupo_id int NOT NULL,
-    PRIMARY KEY(salon_id, grupo_id),
-    FOREIGN KEY(salon_id) REFERENCES Salones(id),
-    FOREIGN KEY(grupo_id) REFERENCES grupos(id)
+    horario_id int NOT NULL, 
+    laboratorio boolean NOT NULL DEFAULT false,
+    porcentaje decimal(1, 1) NOT NULL,
+    PRIMARY KEY(grupo_id, maestro_id, salon_id, horario_id),
+    UNIQUE KEY maestro_unique_horario (maestro_id, horario_id),
+    UNIQUE KEY maestro_unique_salon (maestro_id, salon_id),
+    FOREIGN KEY(grupo_id) REFERENCES grupos(id),
+    FOREIGN KEY(maestro_id) REFERENCES maestros(nomina),
+    FOREIGN KEY(salon_id) REFERENCES salones(id),
+    FOREIGN KEY(horario_id) REFERENCES horarios(id)
 );
