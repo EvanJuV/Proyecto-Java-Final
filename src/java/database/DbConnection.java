@@ -107,7 +107,6 @@ public class DbConnection {
         
         for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
             heads.add(rsmd.getColumnName(i));
-            System.out.println(rsmd.getColumnName(i));
         }
         
         while(rs.next()) {
@@ -126,15 +125,13 @@ public class DbConnection {
                     case Types.FLOAT:
                         row.put(heads.get(i), rs.getFloat(i + 1));
                         break;
-                    case Types.BOOLEAN:
+                    case Types.BIT:
                         row.put(heads.get(i), rs.getBoolean(i + 1));
                         break;
+                    case Types.DECIMAL:
+                        row.put(heads.get(i), rs.getDouble(i + 1));
                 }
-                
-//                if(heads.get(i).equals("honors"))
-                    System.out.println(heads.get(i) + " " + rs.getBoolean(i + 1)); 
             }
-            System.out.println("------------");
 
             data.add(row);
         }

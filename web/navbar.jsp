@@ -8,7 +8,7 @@
 <nav class="navbar">
     <ul class="navbar-list">
         <li class="navbar-item">
-            <a href="//menu.jsp">Inicio</a>
+            <a href="${pageContext.request.contextPath}/menu.jsp">Inicio</a>
         </li>
         <li class="navbar-item">
             <a href="${pageContext.request.contextPath}/maestros.jsp">Maestros</a>
