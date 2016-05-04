@@ -46,7 +46,7 @@
                         <td><%=m.getTelefono()%></td>
                         <td><%=m.getEmail()%></td>
                         <td>
-                            <form method="GET" action="${pageContext.request.contextPath}/maestros/materias">
+                            <form method="GET" action="${pageContext.request.contextPath}/maestros/grupos">
                                 <input name="nomina" type="number" value="<%=m.getNomina()%>" hidden>
                                 <input type="submit" class="button" value="Materias asignadas">
                             </form>

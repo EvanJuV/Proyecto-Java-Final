@@ -7,12 +7,14 @@ package mgmt;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Grupo;
 import models.Materia;
 
 /**
@@ -35,6 +37,9 @@ public class ManageMateriasServlet extends HttpServlet {
                 break;
             case "delete":
                 deleteMateria(request, response);
+                break;
+            case "grupos":
+                gruposMateria(request, response);
                 break;
         }
     }
@@ -85,5 +90,19 @@ public class ManageMateriasServlet extends HttpServlet {
         newMateria.update();
 
         response.sendRedirect(url);
+    }
+
+    private void gruposMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String url = "/grupos_materias.jsp";
+        
+        String clave = request.getParameter("clave");
+        Materia materia = Materia.get(clave);
+        ArrayList<Grupo> grupos = Materia.getGrupos(clave);
+        
+        request.setAttribute("grupos", grupos);
+        request.setAttribute("materia", materia);
+        
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 }

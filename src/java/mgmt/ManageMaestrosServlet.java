@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Grupo;
 import models.Maestro;
 import models.Materia;
 
@@ -33,8 +34,8 @@ public class ManageMaestrosServlet  extends HttpServlet {
             case "edit":
                 editMaestro(request, response);
                 break;
-            case "materias":
-                materiasMaestro(request, response);
+            case "grupos":
+                gruposMaestro(request, response);
                 break;
             case "update":
                 updateMaestro(request, response);
@@ -60,15 +61,15 @@ public class ManageMaestrosServlet  extends HttpServlet {
         response.sendRedirect(url);
     }
     
-    public void materiasMaestro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "/materias_de_maestro.jsp";
-        ArrayList<Materia> materias;
+    public void gruposMaestro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String url = "/grupos_maestro.jsp";
+        ArrayList<Grupo> grupos;
         
         int nomina = parseInt(request.getParameter("nomina"));
-        materias = Maestro.getMaterias(nomina);
+        grupos = Maestro.getGrupos(nomina);
         Maestro maestro = Maestro.get(nomina);
 
-        request.setAttribute("materias", materias);
+        request.setAttribute("grupos", grupos);
         request.setAttribute("maestro", maestro);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

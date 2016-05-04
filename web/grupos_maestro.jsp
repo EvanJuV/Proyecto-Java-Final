@@ -4,6 +4,8 @@
     Author     : Evan
 --%>
 
+<%@page import="models.DetalleGrupo"%>
+<%@page import="models.Grupo"%>
 <%@page import="models.Materia"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.Maestro"%>
@@ -28,25 +30,33 @@
             <table class="u-full-width">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Nomina</th>
-                        <th>Telefono</th>
-                        <th>Correo</th>
-                        <th>Materias Asignadas</th>
+                        <th>Clave</th>
+                        <th>Grupo</th>
+                        <th>Horario</th>
+                        <th>Salón</th>
+                        <th>Idioma</th>
+                        <th>Honors</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% ArrayList<Materia> materias;
-                    materias = (ArrayList<Materia>) request.getAttribute("materias");
-
-                    for (Materia m : materias) {%>
+                    <% ArrayList<Grupo> grupos;
+                    grupos = (ArrayList<Grupo>) request.getAttribute("grupos");
+                    String[] idiomas = {"Español", "Inglés", "Alemán"};
+                        
+                    for (Grupo g : grupos) {
+                        for(DetalleGrupo dg : g.getDetalle()) {%>
 
                     <tr>
-                        <td><%=m.getNombre()%></td>
-                        
+                        <td><%= g.getMateria().getClave() %></td>
+                        <td><%= g.getGrupo() %></td>
+                        <td><%= dg.getHorario().getHora() + "/" + dg.getHorario().getDuracion() + " " + dg.getHorario().getDias() %></td>
+                        <td><%= dg.getSalon().getDepartamento() + " " + dg.getSalon().getNumeroSalon() %></td>
+                        <td><%= idiomas[g.getIdioma()] %></td>
+                        <td><%= g.getHonors() ? "Sí" : "No" %></td>
                     </tr>
                 </tbody>
-                <% }%>
+                <% }
+                }%>
             </table>
         </div>
     </body>

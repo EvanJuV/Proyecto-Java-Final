@@ -28,8 +28,9 @@
                         <th>Clave</th>
                         <th>Nombre</th>
                         <th>Horas Laboratorio</th>
+                        <th>Grupos</th>
                         <th>Editar</th>
-                        <th>Elimina</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,12 @@
                         <td><%=m.getClave()%></td>
                         <td><%=m.getNombre()%></td>
                         <td><%=m.getHorasLaboratorio()%></td>
+                        <td>
+                            <form method="GET" action="${pageContext.request.contextPath}/materias/grupos">
+                                <input name="clave" value="<%=m.getClave()%>" hidden/>
+                                <input type="submit" class="button" value="Grupos"/> 
+                            </form>
+                        </td>
                         <td>
                             <form method="GET" action="${pageContext.request.contextPath}/materias/edit">
                                 <input name="clave" value="<%=m.getClave()%>" hidden/>

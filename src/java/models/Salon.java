@@ -90,6 +90,10 @@ public class Salon {
         return newSalon;
     }
     
+//    public static boolean empalme(Horario h, Salon s) {
+//        ArrayList<HashMap> result = DbConnection.select("SELECT * ");
+//    }
+    
     public int getId() {
         return id;
     }

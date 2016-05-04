@@ -24,7 +24,10 @@
         <jsp:include page="navbar.jsp"/>
         <div class="container push-top" style="max-width: initial;">
             <h2>Grupos</h2>
-            <a href="nuevo_grupo.jsp" class="button button-primary">Nuevo grupo</a>
+            <div class="row">
+                <a href="nuevo_grupo.jsp" class="button button-primary">Nuevo grupo</a>
+                <button id="changeClassroom" class="button u-pull-right">Intercambio de salón</button>
+            </div>
             <table class="u-full-width">
                 <thead>
                     <tr>
@@ -81,4 +84,7 @@
             </table>
         </div>
     </body>
+    <script>
+        
+    </script>
 </html>

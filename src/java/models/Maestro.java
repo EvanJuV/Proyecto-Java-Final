@@ -59,11 +59,11 @@ public class Maestro {
         return maestro;
     }
     
-    public static ArrayList<Materia> getMaterias(int nomina) {
-        ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM materias m JOIN grupos g ON m.clave=g.materia_id JOIN grupos_details mtg ON g.id=gd.grupo_id WHERE gd.maestro_id=%d", nomina));
-        ArrayList<Materia> materias = Materia.transformResults(result);
+    public static ArrayList<Grupo> getGrupos(int nomina) {
+        ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM grupos_details gd JOIN grupos g ON gd.grupo_id=g.id JOIN materias m ON m.clave=g.materia_id WHERE maestro_id=%d;", nomina));
+        ArrayList<Grupo> grupos = Grupo.transformResults(result);
         
-        return materias;
+        return grupos;
     }
     
     public void update() {

@@ -92,6 +92,17 @@ public class Materia {
         return newMateria;
     }
     
+    public static ArrayList<Grupo> getGrupos(String clave) {
+        ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM grupos g "
+                + "JOIN grupos_details gd ON gd.grupo_id=g.id "
+                + "JOIN maestros m ON m.nomina=gd.maestro_id "
+                + "JOIN materias ma ON ma.clave=g.materia_id "
+                + "WHERE g.materia_id='%s'", clave));
+        ArrayList<Grupo> grupos = Grupo.transformResults(result);
+        
+        return grupos;
+    }
+    
     public String getClave() {
         return clave;
     }
