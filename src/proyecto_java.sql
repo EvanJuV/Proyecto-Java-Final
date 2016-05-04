@@ -58,7 +58,7 @@ CREATE TABLE grupos_details(
     salon_id int NOT NULL,
     horario_id int NOT NULL, 
     laboratorio boolean NOT NULL DEFAULT false,
-    porcentaje decimal(1, 1) NOT NULL,
+    porcentaje decimal(3, 2) NOT NULL,
     PRIMARY KEY(grupo_id, maestro_id, salon_id, horario_id),
     UNIQUE KEY maestro_unique_horario (maestro_id, horario_id),
     UNIQUE KEY maestro_unique_salon (maestro_id, salon_id),
