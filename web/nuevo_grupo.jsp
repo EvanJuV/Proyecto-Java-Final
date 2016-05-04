@@ -19,12 +19,38 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
         <title>Nuevo grupo</title>
+        <script>
+            window.onload = function() {
+                document.forms['GrupoEdit-form'].onsubmit = function () {
+                    var grupo = document.getElementById('grupo');
+                    var porcentaje = document.getElementById('porcentaje');
+                    var msg = '';
+                    var run = true;
+                    
+                    if (!grupo.value.match(/([0-9])/)) {
+                        run = false;
+                        msg += 'Grupo debe ser Numeros';
+                    }
+                    if (!porcentaje.value.match(/([0-9])/)) {
+                        run = false;
+                        msg += '<br>Los porcentajes deben ser numeros';
+                    }
+                    
+                       
+                    if (!run) {
+                        error.innerHTML = msg;
+                        return false;
+                    }
+                }
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="navbar.jsp"/>
         <div class="container push-top">
             <h2>Nuevo grupo</h2>
-            <form name="maestro-form" method="POST" action="${pageContext.request.contextPath}/grupos/crear" id="group-form">
+            <span style="color:red; font-weight: bold;" id="error"></span>
+            <form name="GrupoEdit-form" method="POST" action="${pageContext.request.contextPath}/grupos/crear" id="group-form">
                 <div class="row">
                     <div class="four columns">
                         <label for="materia_id">Materia</label>
@@ -80,7 +106,7 @@
                     <div class="row">
                         <div class="four columns">
                             <label for="porcentaje[]">Porcentaje</label>
-                            <input type="text" name="porcentaje[]" class="u-full-width"/>
+                            <input id="porcentaje" type="text" name="porcentaje[]" class="u-full-width"/>
                         </div>
                         <div class="eight columns">
                             <label for="maestro_id[]">Maestro</label>
