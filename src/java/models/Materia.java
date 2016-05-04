@@ -43,9 +43,9 @@ public class Materia {
 
     public static ArrayList<Materia> getAll() {
         ArrayList<HashMap> result = DbConnection.select("SELECT * FROM materias;");
-        ArrayList<Materia> maestros = transformResults(result);
-
-        return maestros;
+        ArrayList<Materia> materias = transformResults(result);
+        //if (materias.isEmpty()) materias = null;
+        return materias;
     }
 
     public static Materia get(String clave) {
@@ -87,7 +87,7 @@ public class Materia {
 
         newMateria.clave = (String) hm.get("clave");
         newMateria.nombre = (String) hm.get("nombre");
-        newMateria.horasLaboratorio = (int) hm.get("horas_laboratorio");
+        newMateria.horasLaboratorio = (int) hm.get("horasLaboratorio");
 
         return newMateria;
     }

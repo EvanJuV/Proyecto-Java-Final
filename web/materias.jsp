@@ -34,8 +34,8 @@
                 </thead>
                 <tbody>
                     <% ArrayList<Materia> A;
-                    A = Materia.getAll();
-
+                    try{ A = Materia.getAll();
+                   
                     for (Materia m : A) {%>
 
                     <tr>
@@ -56,6 +56,10 @@
                         </td>
                     </tr>
                 </tbody>
+                <% }
+                }
+                catch(Exception e){ %>
+                <p> Database access did not work!</p>
                 <% }%>
             </table>
         </div>

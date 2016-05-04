@@ -19,7 +19,8 @@
         <jsp:include page="navbar.jsp"/>
         <div class="container push-top">
             <h2>Nueva materia</h2>
-            <form method="POST" action="${pageContext.request.contextPath}/materias/crear">
+            <form method="POST" action="addToDatabase.jsp?elemType=materia">
+    <!--            ${pageContext.request.contextPath}/materias/crear"> -->
                 <div class="row">
                     <div class="six columns">
                         <label for="clave">Clave</label>
