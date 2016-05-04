@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="models.DetalleGrupo"%>
+<%@page import="models.Maestro"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="models.Grupo"%>
 <%@ page import="java.util.*"%>
@@ -20,29 +22,46 @@
     </head>
     <body>
         <jsp:include page="navbar.jsp"/>
-        <div class="container push-top">
+        <div class="container push-top" style="max-width: initial;">
             <h2>Grupos</h2>
             <a href="nuevo_grupo.jsp" class="button button-primary">Nuevo grupo</a>
             <table class="u-full-width">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Clave</th>
+                        <th>Materia</th>
                         <th>Grupo</th>
                         <th>Idioma</th>
                         <th>Honors</th>
+                        <th>Maestro</th>
+                        <th>Horario</th>
+                        <th>Salón</th>
+                        <th>Laboratorio</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% ArrayList<Grupo> A;
-                         A = Grupo.getAll();
-
-                         for(Grupo n : A){ %>
+                        A = Grupo.getAll();
+                        
+                        String[] idiomas = {"Español", "Inglés", "Alemán"};
+                        
+                        for(Grupo n : A){ 
+                            for(DetalleGrupo d : n.getDetalle()) {%>
                     <tr>
-                        <td><%=n.getId()%></td>
+                        <td><%=n.getMateria().getClave()%></td>
+                        <td><%=n.getMateria().getNombre()%></td>
                         <td><%=n.getGrupo()%></td>
-                        <td><%=n.getIdioma()%></td>
+                        <td><%=idiomas[n.getIdioma()]%></td>
+                        <td><%=n.getHonors() ? "Sí" : "No"%></td>
+
+                        <td><%=d.getMaestro().getNombre()%></td>
+                        <td><%=d.getHorario().getHora() + "/" + d.getHorario().getDuracion() + " " + d.getHorario().getDias()%></td>
+                        <td><%=d.getSalon().getDepartamento() + " " + d.getSalon().getNumeroSalon() %></td>
+
+                        <td><%=d.isLaboratorio() ? "Sí" : "No" %></td>
+                        
                         <td>
                             <form method="GET" action="${pageContext.request.contextPath}/grupos/edit">
                                 <input name="id" value="<%=n.getId()%>" hidden/>
@@ -56,7 +75,8 @@
                             </form>
                         </td>              
                     </tr>
-                    <% }%>
+                    <% }
+                    } %>
                 </tbody>
             </table>
         </div>

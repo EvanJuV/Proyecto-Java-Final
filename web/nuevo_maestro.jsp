@@ -54,7 +54,7 @@
         <jsp:include page="navbar.jsp"/>
         <div class="container push-top">
             <h2>Nuevo maestro</h2>
-            <span id="error"></span>
+            <span id="error" style="color:red"></span>
             <form name="maestro-form" method="POST" action="${pageContext.request.contextPath}/maestros/crear">
                 <div class="row">
                     <div class="six columns">

@@ -67,7 +67,7 @@ public class ManageGruposServlet extends HttpServlet{
             grupoDetalle.setHorario(Horario.get(parseInt(horariosId[i])));
             grupoDetalle.setMaestro(Maestro.get(parseInt(maestrosId[i])));
             grupoDetalle.setSalon(Salon.get(parseInt(salonesId[i])));
-            grupoDetalle.setPorcentaje(Double.parseDouble(porcentajes[i]));
+            grupoDetalle.setPorcentaje(Double.parseDouble(porcentajes[i]) / 100);
             grupoDetalle.setLaboratorio(Boolean.parseBoolean(laboratorios != null && laboratorios[i] != null ? "true" : "false"));
             
             detalles.add(grupoDetalle);
@@ -80,27 +80,12 @@ public class ManageGruposServlet extends HttpServlet{
         response.sendRedirect(url);
     }
 
-//    public void materiasGrupo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String url = "/materias_de_maestro.jsp";
-//        ArrayList<Materia> materias;
-//
-//        int nomina = parseInt(request.getParameter("nomina"));
-//        materias = Grupo.getMaterias(nomina);
-//        Grupo maestro = Grupo.get(nomina);
-//
-//        request.setAttribute("materias", materias);
-//        request.setAttribute("maestro", maestro);
-//
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-//        dispatcher.forward(request, response);
-//    }
-
     public void editGrupo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "/edit_maestro.jsp";
+        String url = "/edit_grupo.jsp";
 
-        Grupo maestro = Grupo.get(parseInt(request.getParameter("nomina")));
+        Grupo grupo = Grupo.get(parseInt(request.getParameter("grupo_id")));
 
-        request.setAttribute("maestro", maestro);
+        request.setAttribute("grupo", grupo);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
@@ -109,12 +94,33 @@ public class ManageGruposServlet extends HttpServlet{
     private void updateGrupo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String url = request.getContextPath() + "/grupos.jsp";
 
+        ArrayList<DetalleGrupo> detalles = new ArrayList<>();
         Grupo newGrupo = new Grupo();
+        
+        newGrupo.setGrupo(parseInt(request.getParameter("grupo")));
+        newGrupo.setIdioma(parseInt(request.getParameter("idioma")));
+        newGrupo.setMateria(Materia.get(request.getParameter("materia_id")));
+        newGrupo.setHonors(Boolean.parseBoolean(request.getParameter("honors") != null ? "true" : "false"));
 
-//        newGrupo.setNomina(parseInt(request.getParameter("nomina")));
-//        newGrupo.setNombre(request.getParameter("nombre"));
-//        newGrupo.setNombre(request.getParameter("nombre"));
-//        newGrupo.setTelefono(request.getParameter("telefono"));
+        String[] maestrosId = request.getParameterValues("maestro_id[]");
+        String[] horariosId = request.getParameterValues("horario_id[]");
+        String[] salonesId = request.getParameterValues("salon_id[]");
+        String[] porcentajes = request.getParameterValues("porcentaje[]");
+        String[] laboratorios = request.getParameterValues("laboratorio[]");
+
+        for (int i = 0; i < maestrosId.length; i++) {
+            DetalleGrupo grupoDetalle = new DetalleGrupo();
+
+            grupoDetalle.setHorario(Horario.get(parseInt(horariosId[i])));
+            grupoDetalle.setMaestro(Maestro.get(parseInt(maestrosId[i])));
+            grupoDetalle.setSalon(Salon.get(parseInt(salonesId[i])));
+            grupoDetalle.setPorcentaje(Double.parseDouble(porcentajes[i]));
+            grupoDetalle.setLaboratorio(Boolean.parseBoolean(laboratorios != null && laboratorios[i] != null ? "true" : "false"));
+
+            detalles.add(grupoDetalle);
+        }
+
+        newGrupo.setDetalle(detalles);
 
         newGrupo.update();
 
@@ -124,9 +130,9 @@ public class ManageGruposServlet extends HttpServlet{
     private void deleteGrupo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String url = request.getContextPath() + "/grupos.jsp";
 
-        Grupo maestro = Grupo.get(parseInt(request.getParameter("nomina")));
+        Grupo grupo = Grupo.get(parseInt(request.getParameter("id")));
 
-        maestro.remove();
+        grupo.remove();
 
         response.sendRedirect(url);
     }

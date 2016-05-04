@@ -72,11 +72,11 @@ public class Grupo {
     }
     
     public void remove() {
-        DbConnection.query(String.format("DELETE FROM grupos WHERE id=%d;", this.id));
-        
         for (DetalleGrupo d : this.detalle) {
             d.remove();
         }
+        
+        DbConnection.query(String.format("DELETE FROM grupos WHERE id=%d;", this.id));
     }
     
     public void save() {
@@ -109,6 +109,10 @@ public class Grupo {
         newGrupo.detalle = DetalleGrupo.getAllOfGroup(newGrupo.getId());
         
         return newGrupo;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
         
     public int getId() {

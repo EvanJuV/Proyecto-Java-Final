@@ -78,7 +78,7 @@ public class ManageSalonesServlet extends HttpServlet{
 
         Salon newSalon = new Salon();
         
-        newSalon.setId(parseInt(request.getParameter("id")));
+        newSalon.setId(parseInt(request.getParameter("salon_id")));
         newSalon.setNumeroSalon(parseInt(request.getParameter("numero_salon")));
         newSalon.setCapacidad(parseInt(request.getParameter("capacidad")));
         newSalon.setDepartamento(request.getParameter("departamento"));

@@ -25,6 +25,7 @@
         <div class="container push-top">
             <h2>Editar salón</h2>
             <form method="POST" action="${pageContext.request.contextPath}/salones/update">
+                <input name="salon_id" value="<%=salon.getId()%>" hidden/>
                 <div class="row">
                     <div class="six columns">
                         <label for="numero_salon">Número de salón</label>
