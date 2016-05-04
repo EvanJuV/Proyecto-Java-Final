@@ -55,8 +55,7 @@
         <div class="container push-top">
             <h2>Nuevo maestro</h2>
             <span id="error"></span>
-            <form name="maestro-form" method="POST" action="addToDatabase.jsp?elemType=maestro">
-<!--                  ${pageContext.request.contextPath}/maestros/crear">-->
+            <form name="maestro-form" method="POST" action="${pageContext.request.contextPath}/maestros/crear">
                 <div class="row">
                     <div class="six columns">
                         <label for="username">Nómina</label>

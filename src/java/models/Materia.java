@@ -59,7 +59,7 @@ public class Materia {
 
     public void update() {
         DbConnection.query(String.format("UPDATE materias SET clave='%s', "
-                + "nombre='%s', horasLaboratorio=%d WHERE clave='%s'",
+                + "nombre='%s', horas_laboratorio=%d WHERE clave='%s'",
                 this.clave, this.nombre, this.horasLaboratorio));
     }
 
@@ -87,7 +87,7 @@ public class Materia {
 
         newMateria.clave = (String) hm.get("clave");
         newMateria.nombre = (String) hm.get("nombre");
-        newMateria.horasLaboratorio = (int) hm.get("horasLaboratorio");
+        newMateria.horasLaboratorio = (int) hm.get("horas_laboratorio");
 
         return newMateria;
     }
