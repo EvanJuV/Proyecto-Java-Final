@@ -23,11 +23,11 @@
         
         <div class="container push-top">
             <h2>Editar maestro</h2>
-            <form method="POST" action="${pageContext.request.contextPath}/maestros/crear">
+            <form method="POST" action="${pageContext.request.contextPath}/maestros/update">
                 <div class="row">
                     <div class="six columns">
                         <label for="username">Nómina</label>
-                        <input type="text" name="nomina" class="u-full-width" value="<%=maestro.getNomina()%>">
+                        <input type="text" name="nomina" class="u-full-width" value="<%=maestro.getNomina()%>" readonly="">
                     </div>
                     <div class="six columns">
                         <label for="username">Nombre completo</label>

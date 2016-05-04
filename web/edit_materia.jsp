@@ -22,11 +22,11 @@
         <% Materia materia = (Materia) request.getAttribute("materia"); %>
         <div class="container push-top">
             <h2>Editar materia</h2>
-            <form method="POST" action="${pageContext.request.contextPath}/materias/edit">
+            <form method="POST" action="${pageContext.request.contextPath}/materias/update">
                 <div class="row">
                     <div class="six columns">
                         <label for="clave">Clave</label>
-                        <input type="text" name="clave" class="u-full-width" value="<%=materia.getClave()%>">
+                        <input type="text" name="clave" class="u-full-width" value="<%=materia.getClave()%>" readonly>
                     </div>
                     <div class="six columns">
                         <label for="horas_laboratorio">Horas Laboratorio</label>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <input type="submit" value="Crear" class="button-primary">
+                    <input type="submit" value="Guardar" class="button-primary">
                 </div>
             </form>
         </div>

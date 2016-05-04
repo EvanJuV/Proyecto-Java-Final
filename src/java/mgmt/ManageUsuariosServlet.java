@@ -29,7 +29,7 @@ public class ManageUsuariosServlet extends HttpServlet {
         String url = "";
         
         if(Usuario.validate(username, password)) {
-            //HttpSession newSession = request.getSession();
+            HttpSession newSession = request.getSession();
             url = "menu.jsp";
             response.sendRedirect(url);
         }

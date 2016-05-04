@@ -60,7 +60,7 @@ public class Materia {
     public void update() {
         DbConnection.query(String.format("UPDATE materias SET clave='%s', "
                 + "nombre='%s', horas_laboratorio=%d WHERE clave='%s'",
-                this.clave, this.nombre, this.horasLaboratorio));
+                this.clave, this.nombre, this.horasLaboratorio, this.clave));
     }
 
     public void remove() {

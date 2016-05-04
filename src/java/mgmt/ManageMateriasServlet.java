@@ -57,7 +57,6 @@ public class ManageMateriasServlet extends HttpServlet {
         String url = "/edit_materia.jsp";
 
         Materia materia = Materia.get(request.getParameter("clave"));
-        System.out.println(materia.getClave());
         request.setAttribute("materia", materia);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

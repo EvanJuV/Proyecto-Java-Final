@@ -69,7 +69,7 @@ public class Maestro {
     public void update() {
         DbConnection.query(String.format("UPDATE maestros SET nomina=%d, "
                 + "nombre='%s', telefono='%s', email='%s' WHERE nomina=%d", 
-                this.nomina, this.nombre, this.telefono, this.email));
+                this.nomina, this.nombre, this.telefono, this.email, this.nomina));
     }
     
     public void remove() {

@@ -87,14 +87,14 @@ public class ManageMaestrosServlet  extends HttpServlet {
     }
 
     private void updateMaestro(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String url = request.getContextPath() + "/salones.jsp";
+        String url = request.getContextPath() + "/maestros.jsp";
 
         Maestro newMaestro = new Maestro();
 
         newMaestro.setNomina(parseInt(request.getParameter("nomina")));
         newMaestro.setNombre(request.getParameter("nombre"));
-        newMaestro.setNombre(request.getParameter("nombre"));
         newMaestro.setTelefono(request.getParameter("telefono"));
+        newMaestro.setEmail(request.getParameter("email"));
 
         newMaestro.update();
 

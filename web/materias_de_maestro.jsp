@@ -33,7 +33,6 @@
                         <th>Telefono</th>
                         <th>Correo</th>
                         <th>Materias Asignadas</th>
-                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
