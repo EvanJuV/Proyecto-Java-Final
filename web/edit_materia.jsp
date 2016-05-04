@@ -15,6 +15,37 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
         <title>Editar materia</title>
+        <script>
+            window.onload = function() {
+                document.forms['EditMateria-form'].onsubmit = function () {
+                    var clave = document.getElementById('clave');
+                    var horas_laboratorio = document.getElementById('horas_laboratorio');
+                    var nombre = document.getElementById('nombre');                    
+                    var error = document.getElementById('error');
+                    var msg = '';
+                    var run = true;
+                    
+                    if (!clave.value.match(/([0-9a-zA-Z])/)) {
+                        run = false;
+                        msg += 'Clave debe ser Numeros y Letras';
+                    }
+                    if (!horas_laboratorio.value.match(/([0-9])/)) {
+                        run = false;
+                        msg += '<br>Las horas de laboratorio deben ser numeros';
+                    }
+                    if (!nombre.value.match(/^[a-zA-Z]/)) {
+                        run = false;
+                        msg += '<br>Solamente letras';
+                    }
+                   
+                       
+                    if (!run) {
+                        error.innerHTML = msg;
+                        return false;
+                    }
+                }
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="navbar.jsp"/>
@@ -22,25 +53,26 @@
         <% Materia materia = (Materia) request.getAttribute("materia"); %>
         <div class="container push-top">
             <h2>Editar materia</h2>
-            <form method="POST" action="${pageContext.request.contextPath}/materias/update">
+            <span style="color:red; font-weight: bold;" id="error"></span>
+            <form name="EditMateria-form" method="POST" action="${pageContext.request.contextPath}/materias/edit">
                 <div class="row">
                     <div class="six columns">
                         <label for="clave">Clave</label>
-                        <input type="text" name="clave" class="u-full-width" value="<%=materia.getClave()%>" readonly>
+                        <input id="clave" type="text" name="clave" class="u-full-width" value="<%=materia.getClave()%>">
                     </div>
                     <div class="six columns">
                         <label for="horas_laboratorio">Horas Laboratorio</label>
-                        <input type="text" name="horas_laboratorio" class="u-full-width" value="<%=materia.getHorasLaboratorio()%>">
+                        <input id="horas_laboratorio" type="text" name="horas_laboratorio" class="u-full-width" value="<%=materia.getHorasLaboratorio()%>">
                     </div>
                 </div>
                 <div class="row">
                     <div class="twelve columns">
                         <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" class="u-full-width" value="<%=materia.getNombre()%>">
+                        <input id="nombre" type="text" name="nombre" class="u-full-width" value="<%=materia.getNombre()%>">
                     </div>
                 </div>
                 <div class="row">
-                    <input type="submit" value="Guardar" class="button-primary">
+                    <input type="submit" value="Crear" class="button-primary">
                 </div>
             </form>
         </div>

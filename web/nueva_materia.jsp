@@ -14,26 +14,58 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
         <title>Nueva materia</title>
+        <script>
+            window.onload = function() {
+                document.forms['materia-form'].onsubmit = function () {
+                    var clave = document.getElementById('clave');
+                    var horas_laboratorio = document.getElementById('horas_laboratorio');
+                    var nombre = document.getElementById('nombre');                    
+                    var error = document.getElementById('error');
+                    var msg = '';
+                    var run = true;
+                    
+                    if (!clave.value.match(/([0-9a-zA-Z]+$)/)) {
+                        run = false;
+                        msg += 'Clave debe ser Numeros y Letras';
+                    }
+                    if (!horas_laboratorio.value.match(/([0-9])/)) {
+                        run = false;
+                        msg += '<br>Las horas de laboratorio deben ser numeros';
+                    }
+                    if (!nombre.value.match(/^[a-zA-Z]+$/)) {
+                        run = false;
+                        msg += '<br>Solamente letras';
+                    }
+                   
+                       
+                    if (!run) {
+                        error.innerHTML = msg;
+                        return false;
+                    }
+                }
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="navbar.jsp"/>
         <div class="container push-top">
             <h2>Nueva materia</h2>
-            <form method="POST" action="${pageContext.request.contextPath}/materias/crear">
+            <span style="color:red; font-weight: bold;" id="error"></span>
+            <form name="materia-form" method="POST" action="${pageContext.request.contextPath}/materias/crear">
                 <div class="row">
                     <div class="six columns">
                         <label for="clave">Clave</label>
-                        <input type="text" name="clave" class="u-full-width">
+                        <input id="clave" type="text" name="clave" class="u-full-width">
                     </div>
                     <div class="six columns">
                         <label for="horas_laboratorio">Horas Laboratorio</label>
-                        <input type="text" name="horas_laboratorio" class="u-full-width">
+                        <input id="horas_laboratorio" type="text" name="horas_laboratorio" class="u-full-width">
                     </div>
                 </div>
                 <div class="row">
                     <div class="twelve columns">
                         <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" class="u-full-width">
+                        <input id="nombre" type="text" name="nombre" class="u-full-width">
                     </div>
                 </div>
                 <div class="row">
