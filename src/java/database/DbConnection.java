@@ -22,7 +22,7 @@ public class DbConnection {
     // Debe ser cambiado en cada ambiente de desarrollo
     private static final String USERNAME = "root";
     private static final String DATABASE = "inscripciones";
-    private static final String PASSWORD = "jcou1992-?";
+    private static final String PASSWORD = "";
     
     public DbConnection() {
     }

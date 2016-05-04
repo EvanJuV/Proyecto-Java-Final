@@ -8,19 +8,19 @@
 <nav class="navbar">
     <ul class="navbar-list">
         <li class="navbar-item">
-            <a href="menu.jsp">Inicio</a>
+            <a href="//menu.jsp">Inicio</a>
         </li>
         <li class="navbar-item">
-            <a href="maestros.jsp">Maestros</a>
+            <a href="${pageContext.request.contextPath}/maestros.jsp">Maestros</a>
         </li>
         <li class="navbar-item">
-            <a href="salones.jsp">Salones</a>
+            <a href="${pageContext.request.contextPath}/salones.jsp">Salones</a>
         </li>
         <li class="navbar-item">
-            <a href="materias.jsp">Materias</a>
+            <a href="${pageContext.request.contextPath}/materias.jsp">Materias</a>
         </li>
         <li class="navbar-item">
-            <a href="grupos.jsp">Grupos</a>
+            <a href="${pageContext.request.contextPath}/grupos.jsp">Grupos</a>
         </li>
     </ul>
 </nav>

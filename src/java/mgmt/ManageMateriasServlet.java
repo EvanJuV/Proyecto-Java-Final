@@ -54,11 +54,11 @@ public class ManageMateriasServlet extends HttpServlet {
     }
 
     public void editMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "/edit_salon.jsp";
+        String url = "/edit_materia.jsp";
 
-        Materia salon = Materia.get(request.getParameter("clave"));
-
-        request.setAttribute("salon", salon);
+        Materia materia = Materia.get(request.getParameter("clave"));
+        System.out.println(materia.getClave());
+        request.setAttribute("materia", materia);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
@@ -67,9 +67,9 @@ public class ManageMateriasServlet extends HttpServlet {
     public void deleteMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = request.getContextPath() + "/materias.jsp";
 
-        Materia salon = Materia.get(request.getParameter("clave"));
+        Materia materia = Materia.get(request.getParameter("clave"));
 
-        salon.remove();
+        materia.remove();
 
         response.sendRedirect(url);
     }

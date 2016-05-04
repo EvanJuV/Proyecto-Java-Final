@@ -49,11 +49,11 @@ public class Materia {
     }
 
     public static Materia get(String clave) {
-        ArrayList<HashMap> result = DbConnection.select("SELECT * FROM materias WHERE clave='%d';");
+        ArrayList<HashMap> result = DbConnection.select(String.format("SELECT * FROM materias WHERE clave='%s';", clave));
         ArrayList<Materia> materias = transformResults(result);
-        
-        Materia materia = !materias.isEmpty() ? materias.get(0) : new Materia();
 
+        Materia materia = !materias.isEmpty() ? materias.get(0) : new Materia();
+            
         return materia;
     }
 

@@ -29,7 +29,7 @@
                         <th>Nombre</th>
                         <th>Horas Laboratorio</th>
                         <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th>Elimina</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,13 +44,13 @@
                         <td><%=m.getHorasLaboratorio()%></td>
                         <td>
                             <form method="GET" action="${pageContext.request.contextPath}/materias/edit">
-                                <input name="nomina" value="<%=m.getClave()%>" hidden/>
+                                <input name="clave" value="<%=m.getClave()%>" hidden/>
                                 <input type="submit" class="button" value="Edit"/> 
                             </form>
                         </td>
                         <td>
                             <form method="DELETE" action="${pageContext.request.contextPath}/materias/delete">
-                                <input name="nomina" value="<%=m.getClave()%>" hidden/>
+                                <input name="clave" value="<%=m.getClave()%>" hidden/>
                                 <input type="submit" class="button" value="X"/>
                             </form>  
                         </td>

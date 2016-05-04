@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/skeleton.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-        <title>Nuevo materia</title>
+        <title>Nueva materia</title>
     </head>
     <body>
         <jsp:include page="navbar.jsp"/>
